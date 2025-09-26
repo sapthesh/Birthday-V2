@@ -1,0 +1,250 @@
+/* General Styling & Setup */
+:root {
+    --bg-color: #1a1a2e;
+    --primary-color: #e94560;
+    --secondary-color: #0f3460;
+    --accent-color: #f0e68c;
+    --text-color: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(45deg, var(--bg-color), var(--secondary-color));
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    perspective: 1000px;
+}
+
+/* ===== Gift Box Styling ===== */
+.gift-container {
+    cursor: pointer;
+    text-align: center;
+    transition: opacity 0.5s ease-out;
+}
+
+.gift-box {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    background-color: var(--primary-color);
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.gift-lid {
+    position: absolute;
+    width: 220px;
+    height: 50px;
+    background-color: #c73049;
+    top: -25px;
+    left: -10px;
+    border-radius: 8px;
+}
+
+.gift-bow::before, .gift-bow::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 70px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    top: -50px;
+}
+
+.gift-bow::before {
+    left: 80px;
+    transform: rotate(-45deg);
+}
+
+.gift-bow::after {
+    left: 110px;
+    transform: rotate(45deg);
+}
+
+.click-me {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* ===== Birthday Card Styling ===== */
+.birthday-card {
+    display: none; /* Initially hidden */
+    text-align: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: fadeIn 1s ease-in-out;
+    max-width: 90%;
+}
+
+.greeting {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.name {
+    font-family: 'Pacifico', cursive;
+    font-size: 4rem;
+    color: var(--accent-color);
+    margin: 0;
+}
+
+.wish-message {
+    font-size: 1.2rem;
+    margin-top: 20px;
+    max-width: 600px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* ===== CSS Cake Styling ===== */
+.cake {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    margin: 30px auto 20px;
+}
+
+.plate {
+    width: 270px;
+    height: 20px;
+    background-color: #ccc;
+    position: absolute;
+    bottom: 40px;
+    left: -10px;
+    border-radius: 50%;
+}
+
+.layer {
+    position: absolute;
+    width: 250px;
+    height: 50px;
+    background-color: #553c13;
+    border-radius: 50% / 25%;
+}
+.layer-bottom { bottom: 50px; }
+.layer-middle { bottom: 80px; }
+.layer-top { bottom: 110px; }
+
+.icing {
+    position: absolute;
+    width: 250px;
+    height: 30px;
+    background-color: white;
+    bottom: 140px;
+    border-radius: 50% / 25%;
+}
+
+.drip {
+    position: absolute;
+    width: 20px;
+    height: 30px;
+    background: white;
+    border-radius: 0 0 50% 50%;
+    top: 10px;
+}
+.drip1 { left: 30px; }
+.drip2 { left: 115px; height: 40px; }
+.drip3 { left: 200px; }
+
+.candle {
+    position: absolute;
+    width: 10px;
+    height: 40px;
+    background-color: var(--primary-color);
+    bottom: 160px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px 5px 0 0;
+}
+
+.flame {
+    position: absolute;
+    width: 10px;
+    height: 15px;
+    background-color: orange;
+    top: -15px;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: flicker 1s infinite;
+}
+
+@keyframes flicker {
+    0% { transform: scaleY(1); opacity: 1; }
+    50% { transform: scaleY(0.8); opacity: 0.8; }
+    100% { transform: scaleY(1); opacity: 1; }
+}
+
+
+/* ===== Confetti Styling ===== */
+.confetti-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #f00;
+    opacity: 0.7;
+    animation: fall 5s linear infinite;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
+
+
+/* ===== Responsive Design ===== */
+@media (max-width: 600px) {
+    .greeting {
+        font-size: 1.5rem;
+    }
+    .name {
+        font-size: 3rem;
+    }
+    .wish-message {
+        font-size: 1rem;
+    }
+    .cake {
+        transform: scale(0.8);
+    }
+}
