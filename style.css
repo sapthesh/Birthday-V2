@@ -207,7 +207,7 @@ body {
 .layer { position: absolute; width: 250px; height: 50px; background-color: #553c13; border-radius: 50% / 25%; }
 .layer-bottom { bottom: 50px; } .layer-middle { bottom: 80px; } .layer-top { bottom: 110px; }
 .icing { position: absolute; width: 250px; height: 30px; background-color: white; bottom: 140px; border-radius: 50% / 25%; }
-.drip { position: absolute; width: 20px; height: 30px; background: white; border-radius: 0 0 50% 50%; top: 10px; }
+.drip { position: absolute; width: 20px; height: 30px; background: white; border-radius: 50%; top: 10px; }
 .drip1 { left: 30px; } .drip2 { left: 115px; height: 40px; } .drip3 { left: 200px; }
 .candle { position: absolute; width: 10px; height: 40px; background-color: var(--primary-color); bottom: 160px; left: 50%; transform: translateX(-50%); border-radius: 5px 5px 0 0; }
 .flame { position: absolute; width: 10px; height: 15px; background-color: orange; top: -15px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; animation: flicker 1s infinite; }
