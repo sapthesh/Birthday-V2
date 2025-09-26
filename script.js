@@ -1,49 +1,63 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const giftContainer = document.getElementById('giftContainer');
-    const birthdayCard = document.getElementById('birthdayCard');
-    const confettiContainer = document.querySelector('.confetti-container');
-    const confettiCount = 150; // Number of confetti pieces
+    const step1 = document.getElementById('step1');
+    const step2 = document.getElementById('step2');
+    const step3 = document.getElementById('step3');
+    const envelopeContainer = document.getElementById('envelopeContainer');
+    const letterContainer = document.getElementById('letterContainer');
+    const unfoldButton = document.getElementById('unfold-button');
+    const greetingTextElement = document.getElementById('greetingText');
 
-    // --- Confetti Generation ---
-    function createConfetti() {
-        for (let i = 0; i < confettiCount; i++) {
-            const confetti = document.createElement('div');
-            confetti.classList.add('confetti');
+    // --- Step 1 to Step 2 Transition ---
+    envelopeContainer.addEventListener('click', () => {
+        envelopeContainer.classList.add('open');
+        setTimeout(() => {
+            step1.classList.remove('active');
+            step2.classList.add('active');
+            setTimeout(() => letterContainer.classList.add('show'), 100);
+        }, 700); // Wait for flap animation
+    });
 
-            const colors = ['#e94560', '#f0e68c', '#00d8d6', '#ffffff'];
-            const randomColor = colors[Math.floor(Math.random() * colors.length)];
-            
-            confetti.style.left = `${Math.random() * 100}vw`;
-            confetti.style.animationDuration = `${Math.random() * 3 + 4}s`; // Duration between 4s and 7s
-            confetti.style.animationDelay = `${Math.random() * 5}s`;
-            confetti.style.backgroundColor = randomColor;
-            
-            // Randomize shape
-            if (Math.random() > 0.5) {
-                confetti.style.borderRadius = '50%';
-                confetti.style.width = `${Math.random() * 8 + 5}px`;
-                confetti.style.height = confetti.style.width;
+    // --- Step 2 to Step 3 Transition ---
+    unfoldButton.addEventListener('click', () => {
+        step2.classList.remove('active');
+        step3.classList.add('active');
+        startFinalAnimations();
+    });
+
+    function startFinalAnimations() {
+        // Typewriter effect
+        const greeting = "Happy Birthday,";
+        let i = 0;
+        greetingTextElement.innerHTML = '';
+        const cursor = document.createElement('span');
+        cursor.className = 'typewriter-cursor';
+        greetingTextElement.appendChild(cursor);
+
+        const typing = setInterval(() => {
+            if (i < greeting.length) {
+                greetingTextElement.insertBefore(document.createTextNode(greeting.charAt(i)), cursor);
+                i++;
             } else {
-                confetti.style.width = `${Math.random() * 10 + 5}px`;
-                confetti.style.height = `${Math.random() * 8 + 5}px`;
+                clearInterval(typing);
+                cursor.style.animation = 'none'; // Optional: stop blinking
+                cursor.style.display = 'none';
             }
+        }, 100);
 
-            confettiContainer.appendChild(confetti);
-        }
+        // Balloon animation
+        createBalloons(15);
     }
 
-    // --- Event Listener for the Gift Box ---
-    giftContainer.addEventListener('click', () => {
-        // Hide the gift box with a fade out effect
-        giftContainer.style.opacity = '0';
-        setTimeout(() => {
-            giftContainer.style.display = 'none';
-        }, 500); // Match this with transition duration in CSS
-
-        // Show the birthday card
-        birthdayCard.style.display = 'block';
-
-        // Start the confetti
-        createConfetti();
-    });
+    function createBalloons(count) {
+        const colors = ['#e94560', '#f0e68c', '#00d8d6', '#8e44ad', '#3498db'];
+        for (let i = 0; i < count; i++) {
+            const balloon = document.createElement('div');
+            balloon.className = 'balloon';
+            balloon.style.left = `${Math.random() * 100}vw`;
+            balloon.style.animationDuration = `${Math.random() * 6 + 8}s`; // 8-14s duration
+            balloon.style.animationDelay = `${Math.random() * 5}s`;
+            balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            document.body.appendChild(balloon);
+        }
+    }
 });
